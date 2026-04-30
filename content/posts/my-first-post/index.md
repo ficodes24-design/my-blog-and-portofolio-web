@@ -216,7 +216,7 @@ use **"-"** or **"+"**.
 
 - **Text highlighting & Stressing**
     - `**word**` for __bold__
-    - `*word**`  for _italic_ 
+    - `*word*`  for _italic_ 
     - `***word***` for ***bold & italic***
     - `~~word~~` for ~~strikethrough~~
 
