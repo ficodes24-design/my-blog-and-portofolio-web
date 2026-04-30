@@ -6,6 +6,7 @@ title: 'How I Built This Static Site'
 tags: ["hugo", "webdev"]
 summary: "A deep dive into why i chose hugo over WordPress or others for my portofolio"
 ---
+
 ![Hugo Logo](image.png)
 
 Before I jump into the technical dive into the creation of this website, I would like to review some cool informations that you might want to know. But if you want no ~~Buls***~~ just scroll down to the almost buttom section of this blog post. :) 
