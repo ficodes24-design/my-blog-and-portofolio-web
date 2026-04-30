@@ -1,0 +1,61 @@
+baseURL = 'https://example.org/'
+locale = 'en-us'
+title = 'My Creative Dev Blog'
+theme = 'PaperMod'
+
+[params]
+    env = "production"
+    title = "Fikar's Blog"
+    description = "Just doing my stuff, positivity and wellness"
+    author = "MDB"
+
+    #Appearance
+    ShowReadingTime = true
+    ShowShareButtons = true
+    defaultTheme = "auto" #enable auto dark/light switch
+
+    [params.homeInfoParams]
+    Title = "Hi there \U0001F44B"
+    Content = "Welcome to my corner"
+
+    #Home page profile
+    [params.profileMode]
+    enabled = true #set to true if you want a social profile home page
+    title = " Hi, I'm MDB"
+    subtitle = "Developer | Creator | Digital Garderner"
+    imageUrl = "https://github.com/github.png"
+    imageWidth = 120
+    imageHeight = 120
+    [[params.profileMode.buttons]]
+        name = "View Projects"
+        url = "projects"
+    
+    #Social Icons
+    [[params.socialIcons]]
+        name = "github"
+        url = "https://github.com/yourhandle"
+    [[params.socialIcons]]
+        name = "YouTube"
+        url  = "https;//youtube.com/ficodes"
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
+
+[[menu.main]]
+    name = "Projects"
+    url = "projects"
+    weight = 10
+
+[[menu.main]]
+    name = "Blog"
+    url = "posts"
+    weight = 20
+
+[[menu.main]]
+    name = "Search"
+    url = "search"
+    weight = 30
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags"
+    weight = 40

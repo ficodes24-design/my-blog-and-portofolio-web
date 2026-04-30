@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>How I Built This Static Site | My Creative Dev Blog</title>
+<meta name="keywords" content="hugo, webdev">
+<meta name="description" content="A deep dive into why i chose hugo over WordPress or others for my portofolio">
+<meta name="author" content="MDB">
+<link rel="canonical" href="http://localhost:1313/posts/my-first-post/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.34d91883bcea6e759c2d3a842c5975efd544bfec7ea2927692a4497df4c731c0.css" integrity="sha256-NNkYg7zqbnWcLTqELFl179VEv&#43;x&#43;opJ2kqRJffTHMcA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/my-first-post/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/posts/my-first-post/">
+  <meta property="og:site_name" content="My Creative Dev Blog">
+  <meta property="og:title" content="How I Built This Static Site">
+  <meta property="og:description" content="A deep dive into why i chose hugo over WordPress or others for my portofolio">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-30T19:13:16+07:00">
+    <meta property="article:modified_time" content="2026-04-30T19:13:16+07:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="article:tag" content="Webdev">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How I Built This Static Site">
+  <meta name="twitter:description" content="A deep dive into why i chose hugo over WordPress or others for my portofolio">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "How I Built This Static Site",
+      "item": "http://localhost:1313/posts/my-first-post/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How I Built This Static Site",
+  "name": "How I Built This Static Site",
+  "description": "A deep dive into why i chose hugo over WordPress or others for my portofolio",
+  "keywords": [
+    "hugo", "webdev"
+  ],
+  "articleBody": "\nBefore I jump into the technical dive into the creation of this website, I would like to review some cool informations that you might want to know. But if you want no Buls*** just scroll down to the almost buttom section of this blog post. :)\nWhy Hugo? Because it’s static and it’s fast, Really fast…\nWhy Not Wordpress? Because I don’t want to have any server-side processing at runtime. While it still lives on a server, its role is strictly to deliver pre-built files rather than generate content on the fly.\nHow Static “Server-Side” Works? On a static site, the server acts like a simple file delivery service:\nNo Runtime Logic: The server does not run scripts (like PHP or Python) or query a database when a user visits a page. Pre-Built Files: Every pages exists as complete HTML file before anyone even visits. Build-Time Processing: Any “server-side” work happens before deployment during a “build step”. it takes your raw code and generate the final static files thar are then uploaded to the server. Difference between Dynamic site \u0026 Static site A Dynamic site is like a (Whiteboard): The server “draws” the page from scratch every time someone looks at it. A Static site is like a (Book): The page is already “printed.” To change the content, you don’t edit the live page; you print a new edition and swap it out. Hugo vs WordPress for blog and porto: The “No-Nonsense” Breakdown If you’re building a blog or portfolio, you want it to be fast, cheap, and impossible to break. Here is why Hugo wins over the “old school” WordPress approach.\n1. Insane Loading Speeds WordPress: Slow. Every time someone visits, the server has to “build” the page using a database. This creates lag. -Hugo: Instant. Your pages are already built as simple HTML files. The server just hands them over. There is zero waiting time for your readers. 2. Zero Maintenance Stress WordPress: Constant headaches. You have to update plugins, themes, and the WordPress core every week. If one update fails, your whole site can crash. Hugo: Set it and forget it. There are no plugins to break and no database to manage. Once you deploy it, it stays online forever without you touching it. 3. Bulletproof Security WordPress: A huge target for hackers. Because it has a login page and a database, it’s vulnerable to “brute force” and “SQL injection” attacks. = Hugo: Nothing to hack. Since there is no database or backend code running on the server, there is no “door” for hackers to walk through. It is the most secure way to host a site. 4. Hosting for $0.00 WordPress: Requires “Specialized Hosting” that usually costs $10–$30/month to keep it running smoothly. Hugo: Can be hosted for free on platforms like GitHub Pages, Netlify, or Vercel. Because static files are lightweight, these companies don’t charge you to host them. 5. Better Writing Workflow WordPress: You have to log into a clunky dashboard and use a “block editor” that can be laggy and frustrating. Hugo: You write in Markdown (.md). It’s clean, lightweight, and works in any text editor. You own your files locally, so you can write even when you’re offline. Technical Dive It is very easy to create your first hugo static site, you can visit Hugo and look for Docs page for the full documentation, then you will find all technical informations for making static website. Anyway I’ll cover the technical fundamentals for creating a static site.\nStep 1. Install Hugo You need the Extended Version of Hugo to handle modern CSS features.\nMacOS: brew install hugo If you hadn’t install Homebrew you can check their website Homebrew for technical guide of the installation.\nWindows #built-in winget install Hugo.Hugo.Extended #with chocolatey choco install hugo-extended #or with scoop scoop install hugo-extended Scoop, Choco\nLinux sudo apt install hugo Step 2: Create the Project Linux \u0026 MacOS hugo new site my-first-blog cd my-first-blog git init Windows hugo new site my-first-blog cd my-first-site git init hugo.toml: The brain of your site. All global settings go here. content/: Where your Markdown files (the blog posts) live. themes/: Where the design files live. public/: This folder doesn’t exist yet, but it’s where the final “baked” HTML files will go. Step 3: Add the Theme (PaperMod) I use PaperMod for simple \u0026 minimalist theme, perfect for my portofolio.\nLinux \u0026 MacOS git submodule add --depth=1 https://github.com/adityatelange/hugo-paperMod.git themes/PaperMod echo \"theme = 'PaperMod'\" \u003e\u003e hugo.toml Windows git submodule add https://github.com/adityatelange/hugo-paperMod.git themes/PaperMod echo \"theme = 'PaperMod'\" \u003e\u003e hugo.toml we use git submodules so you can easily update the theme later without overwriting your own changes.\nstep 4: Add cool configuartion open hugo.toml in your favourite code editor in this case i use vscode\ntitle = \"My Focus Blog\" theme = \"PaperMod\" [params] env = \"production\" title = \"Your Name\" description = \"Thoughts on tech and life.\" ShowReadingTime = true ShowShareButtons = true defaultTheme = \"auto\" # This enables the auto Dark/Light mode switch [params.homeInfoParams] Title = \"Hi there \\U0001F44B\" Content = \"Welcome to my corner of the web. I write about things that matter.\" [params.profileMode] enabled = false # Set to true if you want a social profile home page Step 5: Write Your First Post hugo new posts/hello-world.md Sample:\n--- date: '2026-04-30T19:13:16+07:00' draft: false title: 'How I Built This Static Site' tags: [\"hugo\", \"webdev\"] summary: \"A deep dive into why i chose hugo over WordPress or others for my portofolio\" --- Open content/posts/hello-world.md and write some content. Important Change draft: true to draft: false when you want to see it live.\nStep 6: See it in Action Run the local Development server:\nhugo server -D Go to http://localhost:1313.\nThe server watcher your files. Every time you save a Markdown post, the site “rebuilds” instantly. This is why developers love Hugo it’s the fastest SSG in the world.\nNext: Suggestion \u0026 Importance. Once you have the basics, you can add some cool features such as Fuzzy Search, Shortcodes, Image Processing etc…\nAnd you also want to learn some basic markdown language such as:\nFront Matter The stuff between --- is data about the post hugo uses this to sort your posts by date, add tags and generate the title.\nHeaders:\n\"#\" H1 \"##\" H2 \"###\" H3 \"####\" H4 The syntax text: \"```python print(\"whatever) ```\" for python,\n\"```bash bash-syntax ```\" for bash and etc….\nUnordered list: use \"-\" or \"+\".\n- first - second - third or\n+ first + second + third sublists\n- first - one - two - three - second - one - two Text highlighting \u0026 Stressing **word** for bold *word** for italic ***word*** for bold \u0026 italic ~~word~~ for strikethrough for underline and highlight you have to use html\nimage \u0026 link #image ![description](image1.png) #link [text](https://example.com) Final step: Deployment Static websites are free to host. use GitHub Pages or Netlify.\nNetlify: Just connect your GitHub repo. It will run the hugo command every time you “git push” and your site will be updated in seconds. Summary: Why this is “Cool” No Database: Your site can’t be hacked via SQL injection. Instant Speed: Because there is no processing on the server, your pages load in miliseconds. Markdown: You own your content. it’s just text files. if you want to leave Hugo in 10 years, you just take your .md files with you. Thanks :) ",
+  "wordCount" : "1226",
+  "inLanguage": "en",
+  "datePublished": "2026-04-30T19:13:16+07:00",
+  "dateModified": "2026-04-30T19:13:16+07:00",
+  "author":{
+    "@type": "Person",
+    "name": "MDB"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/my-first-post/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My Creative Dev Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="My Creative Dev Blog (Alt + H)">My Creative Dev Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      How I Built This Static Site
+    </h1>
+    <div class="post-meta"><span title='2026-04-30 19:13:16 +0700 WIB'>April 30, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>MDB</span><p style="font-size: 0.8rem; opacity: 0.6; margin-top: 2em;">
+    Brought to life on May 1, 2026 using <a href="https://gohugo.io">Hugo</a>.
+</p>
+</div>
+  </header> 
+  <div class="post-content md-content"><p><img alt="Hugo Logo" loading="lazy" src="/posts/my-first-post/image.png"></p>
+<p>Before I jump into the technical dive into the creation of this website, I would like to review some cool informations that you might want to know. But if you want no <del>Buls***</del> just scroll down to the almost buttom section of this blog post. :)</p>
+<h2 id="why-hugo">Why Hugo?<a hidden class="anchor" aria-hidden="true" href="#why-hugo">#</a></h2>
+<p>Because it&rsquo;s <strong>static</strong> and it&rsquo;s fast, <strong>Really fast&hellip;</strong></p>
+<h2 id="why-not-wordpress">Why Not Wordpress?<a hidden class="anchor" aria-hidden="true" href="#why-not-wordpress">#</a></h2>
+<p>Because I don&rsquo;t want to have any <strong>server-side processing at runtime</strong>. While it still lives on a server, its role is strictly to deliver <strong>pre-built files</strong> rather than generate content on the fly.</p>
+<h3 id="how-static-server-side-works">How Static &ldquo;Server-Side&rdquo; Works?<a hidden class="anchor" aria-hidden="true" href="#how-static-server-side-works">#</a></h3>
+<p>On a static site, the server acts like a simple file delivery service:</p>
+<ul>
+<li><strong>No Runtime Logic</strong>: The server does not run scripts (like PHP or Python) or query a database when a user visits a page.</li>
+<li><strong>Pre-Built Files</strong>: Every pages exists as complete HTML file before anyone even visits.</li>
+<li><strong>Build-Time Processing</strong>: Any &ldquo;server-side&rdquo; work happens <strong>before deployment</strong> during a &ldquo;build step&rdquo;. it takes your raw code and generate the final static files thar are then uploaded to the server.</li>
+</ul>
+<h4 id="difference-between-dynamic-site--static-site">Difference between Dynamic site &amp; Static site<a hidden class="anchor" aria-hidden="true" href="#difference-between-dynamic-site--static-site">#</a></h4>
+<ul>
+<li><strong>A Dynamic site is like a (Whiteboard)</strong>: The server &ldquo;draws&rdquo; the page from scratch every time someone looks at it.</li>
+<li><strong>A Static site is like a (Book)</strong>: The page is already &ldquo;printed.&rdquo; To change the content, you don&rsquo;t edit the live page; you <strong>print a new edition</strong> and swap it out.</li>
+</ul>
+<h3 id="hugo-vs-wordpress-for-blog-and-porto-the">Hugo vs WordPress for blog and porto: <strong>The &ldquo;No-Nonsense&rdquo; Breakdown</strong><a hidden class="anchor" aria-hidden="true" href="#hugo-vs-wordpress-for-blog-and-porto-the">#</a></h3>
+<p>If you’re building a blog or portfolio, you want it to be fast, cheap, and impossible to break. Here is why Hugo wins over the &ldquo;old school&rdquo; WordPress approach.</p>
+<h4 id="1-insane-loading-speeds">1. Insane Loading Speeds<a hidden class="anchor" aria-hidden="true" href="#1-insane-loading-speeds">#</a></h4>
+<ul>
+<li>WordPress: Slow. Every time someone visits, the server has to &ldquo;build&rdquo; the page using a database. This creates lag.
+-Hugo: Instant. Your pages are already built as simple HTML files. The server just hands them over. There is zero waiting time for your readers.</li>
+</ul>
+<h4 id="2-zero-maintenance-stress">2. Zero Maintenance Stress<a hidden class="anchor" aria-hidden="true" href="#2-zero-maintenance-stress">#</a></h4>
+<ul>
+<li><strong>WordPress</strong>: Constant headaches. You have to update plugins, themes, and the WordPress core every week. If one update fails, your whole site can crash.</li>
+<li><strong>Hugo</strong>: Set it and forget it. There are no plugins to break and no database to manage. Once you deploy it, it stays online forever without you touching it.</li>
+</ul>
+<h4 id="3-bulletproof-security">3. Bulletproof Security<a hidden class="anchor" aria-hidden="true" href="#3-bulletproof-security">#</a></h4>
+<ul>
+<li><strong>WordPress</strong>: A huge target for hackers. Because it has a login page and a database, it’s vulnerable to &ldquo;brute force&rdquo; and &ldquo;SQL injection&rdquo; attacks.
+= <strong>Hugo</strong>: Nothing to hack. Since there is no database or backend code running on the server, there is no &ldquo;door&rdquo; for hackers to walk through. It is the most secure way to host a site.</li>
+</ul>
+<h4 id="4-hosting-for-000">4. Hosting for $0.00<a hidden class="anchor" aria-hidden="true" href="#4-hosting-for-000">#</a></h4>
+<ul>
+<li><strong>WordPress</strong>: Requires &ldquo;Specialized Hosting&rdquo; that usually costs $10–$30/month to keep it running smoothly.</li>
+<li><strong>Hugo</strong>: Can be hosted for free on platforms like GitHub Pages, Netlify, or Vercel. Because static files are lightweight, these companies don&rsquo;t charge you to host them.</li>
+</ul>
+<h4 id="5-better-writing-workflow">5. Better Writing Workflow<a hidden class="anchor" aria-hidden="true" href="#5-better-writing-workflow">#</a></h4>
+<ul>
+<li><strong>WordPress</strong>: You have to log into a clunky dashboard and use a &ldquo;block editor&rdquo; that can be laggy and frustrating.</li>
+<li><strong>Hugo</strong>: You write in Markdown (.md). It’s clean, lightweight, and works in any text editor. You own your files locally, so you can write even when you’re offline.</li>
+</ul>
+<h3 id="technical-dive">Technical Dive<a hidden class="anchor" aria-hidden="true" href="#technical-dive">#</a></h3>
+<p>It is very easy to create your first hugo static site, you can visit <a href="https://gohugo.io/">Hugo</a> and look for <a href="https://gohugo.io/documentation/">Docs</a> page for the full documentation, then you will find all technical informations for making static website. Anyway I&rsquo;ll cover the <strong>technical fundamentals</strong> for creating a static site.</p>
+<h4 id="step-1-install-hugo">Step 1. Install Hugo<a hidden class="anchor" aria-hidden="true" href="#step-1-install-hugo">#</a></h4>
+<p>You need the <strong>Extended Version</strong> of Hugo to handle modern CSS features.</p>
+<ul>
+<li><strong>MacOS</strong>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo
+</span></span></code></pre></div><p>If you hadn&rsquo;t install Homebrew you can check their website <a href="https://brew.sh/">Homebrew</a> for technical guide of the installation.</p>
+<ul>
+<li><strong>Windows</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e">#built-in</span>
+</span></span><span style="display:flex;"><span>winget install Hugo.Hugo.Extended
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#with chocolatey</span>
+</span></span><span style="display:flex;"><span>choco install hugo-extended
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#or with scoop</span>
+</span></span><span style="display:flex;"><span>scoop install hugo-extended
+</span></span></code></pre></div><p><a href="https://scoop.sh/">Scoop</a>,
+<a href="https://chocolatey.org/install">Choco</a></p>
+<ul>
+<li><strong>Linux</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install hugo
+</span></span></code></pre></div><h4 id="step-2-create-the-project">Step 2: Create the Project<a hidden class="anchor" aria-hidden="true" href="#step-2-create-the-project">#</a></h4>
+<ul>
+<li><strong>Linux &amp; MacOS</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site my-first-blog
+</span></span><span style="display:flex;"><span>cd my-first-blog
+</span></span><span style="display:flex;"><span>git init
+</span></span></code></pre></div><ul>
+<li><strong>Windows</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>hugo new site my-first-blog
+</span></span><span style="display:flex;"><span>cd my-first-site
+</span></span><span style="display:flex;"><span>git init
+</span></span></code></pre></div><ul>
+<li><code>hugo.toml</code>: The brain of your site. All global settings go here.</li>
+<li><code>content/</code>: Where your Markdown files (the blog posts) live.</li>
+<li><code>themes/</code>: Where the design files live.</li>
+<li><code>public/</code>: This folder doesn&rsquo;t exist yet, but it&rsquo;s where the final &ldquo;baked&rdquo; HTML files will go.</li>
+</ul>
+<h4 id="step-3-add-the-theme-papermod">Step 3: Add the Theme (PaperMod)<a hidden class="anchor" aria-hidden="true" href="#step-3-add-the-theme-papermod">#</a></h4>
+<p>I use PaperMod for simple &amp; minimalist theme, perfect for my portofolio.</p>
+<ul>
+<li><strong>Linux &amp; MacOS</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git submodule add --depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> https://github.com/adityatelange/hugo-paperMod.git themes/PaperMod
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;theme = &#39;PaperMod&#39;&#34;</span> &gt;&gt; hugo.toml
+</span></span></code></pre></div><ul>
+<li><strong>Windows</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>git submodule add https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/adityatelange/hugo-paperMod.git themes/PaperMod
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;theme = &#39;PaperMod&#39;&#34;</span> &gt;&gt; hugo.toml
+</span></span></code></pre></div><p>we use <code>git submodules</code> so you can easily update the theme later without overwriting your own changes.</p>
+<h4 id="step-4-add-cool-configuartion">step 4: Add cool configuartion<a hidden class="anchor" aria-hidden="true" href="#step-4-add-cool-configuartion">#</a></h4>
+<p>open <code>hugo.toml</code> in your favourite code editor in this case i use <strong>vscode</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;My Focus Blog&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#34;PaperMod&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">params</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">env</span> = <span style="color:#e6db74">&#34;production&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;Your Name&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;Thoughts on tech and life.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ShowReadingTime</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ShowShareButtons</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">defaultTheme</span> = <span style="color:#e6db74">&#34;auto&#34;</span> <span style="color:#75715e"># This enables the auto Dark/Light mode switch</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    [<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">homeInfoParams</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Title</span> = <span style="color:#e6db74">&#34;Hi there \U0001F44B&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Content</span> = <span style="color:#e6db74">&#34;Welcome to my corner of the web. I write about things that matter.&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    [<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">profileMode</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">enabled</span> = <span style="color:#66d9ef">false</span> <span style="color:#75715e"># Set to true if you want a social profile home page</span>
+</span></span></code></pre></div><h4 id="step-5-write-your-first-post">Step 5: Write Your First Post<a hidden class="anchor" aria-hidden="true" href="#step-5-write-your-first-post">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new posts/hello-world.md
+</span></span></code></pre></div><p><strong>Sample</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>date: &#39;2026-04-30T19:13:16+07:00&#39;
+</span></span><span style="display:flex;"><span>draft: false
+</span></span><span style="display:flex;"><span>title: &#39;How I Built This Static Site&#39;
+</span></span><span style="display:flex;"><span>tags: [&#34;hugo&#34;, &#34;webdev&#34;]
+</span></span><span style="display:flex;"><span>summary: &#34;A deep dive into why i chose hugo over WordPress or others for my portofolio&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>Open <code>content/posts/hello-world.md</code> and write some content. <strong>Important</strong> Change <code>draft: true</code> to <code>draft: false</code> when you want to see it live.</p>
+<h4 id="step-6-see-it-in-action">Step 6: See it in Action<a hidden class="anchor" aria-hidden="true" href="#step-6-see-it-in-action">#</a></h4>
+<p>Run the local Development server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server -D
+</span></span></code></pre></div><p>Go to http://localhost:1313.</p>
+<p>The server watcher your files. Every time you save a Markdown post, the site &ldquo;rebuilds&rdquo; instantly. This is why developers love Hugo it&rsquo;s the fastest SSG in the world.</p>
+<h4 id="next-suggestion--importance">Next: Suggestion &amp; Importance.<a hidden class="anchor" aria-hidden="true" href="#next-suggestion--importance">#</a></h4>
+<p>Once you have the basics, you can add some cool features such as <strong>Fuzzy Search</strong>, <strong>Shortcodes</strong>, <strong>Image Processing</strong> etc&hellip;</p>
+<p>And you also want to learn some basic markdown language such as:</p>
+<ul>
+<li>
+<p><strong>Front Matter</strong>
+The stuff between <code>---</code> is data about the post hugo uses this to sort your posts by date, add tags and generate the title.</p>
+</li>
+<li>
+<p><strong>Headers</strong>:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>&#34;#&#34; H1
+&#34;##&#34; H2 
+&#34;###&#34; H3
+&#34;####&#34; H4
+</code></pre><ul>
+<li><strong>The syntax text</strong>:</li>
+</ul>
+<pre tabindex="0"><code>&#34;```python
+print(&#34;whatever) ```&#34;
+</code></pre><p>for python,</p>
+<pre tabindex="0"><code>&#34;```bash 
+bash-syntax ```&#34;
+</code></pre><p>for bash and etc&hellip;.</p>
+<ul>
+<li><strong>Unordered list</strong>:</li>
+</ul>
+<p>use <strong>&quot;-&quot;</strong> or <strong>&quot;+&quot;</strong>.</p>
+<pre tabindex="0"><code>- first
+- second
+- third
+</code></pre><p><strong>or</strong></p>
+<pre tabindex="0"><code> + first
+ + second
+ + third
+</code></pre><p><strong>sublists</strong></p>
+<pre tabindex="0"><code>- first
+    - one
+    - two
+    - three
+- second
+    - one 
+    - two
+</code></pre><ul>
+<li><strong>Text highlighting &amp; Stressing</strong>
+<ul>
+<li><code>**word**</code> for <strong>bold</strong></li>
+<li><code>*word**</code>  for <em>italic</em></li>
+<li><code>***word***</code> for <em><strong>bold &amp; italic</strong></em></li>
+<li><code>~~word~~</code> for <del>strikethrough</del></li>
+</ul>
+</li>
+</ul>
+<p><em><strong>for underline and highlight you have to use html</strong></em></p>
+<ul>
+<li><strong>image &amp; link</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>#image
+</span></span><span style="display:flex;"><span>![<span style="color:#f92672">description</span>](<span style="color:#a6e22e">image1.png</span>)
+</span></span><span style="display:flex;"><span>#link
+</span></span><span style="display:flex;"><span>[<span style="color:#f92672">text</span>](<span style="color:#a6e22e">https://example.com</span>)
+</span></span></code></pre></div><h4 id="final-step-deployment">Final step: Deployment<a hidden class="anchor" aria-hidden="true" href="#final-step-deployment">#</a></h4>
+<p>Static websites are free to host. use <strong>GitHub Pages</strong> or <strong>Netlify</strong>.</p>
+<ul>
+<li><strong>Netlify</strong>: Just connect your GitHub repo. It will run the <strong>hugo</strong> command every time you &ldquo;git push&rdquo; and your site will be updated in seconds.</li>
+</ul>
+<h3 id="summary-why-this-is-cool">Summary: Why this is &ldquo;Cool&rdquo;<a hidden class="anchor" aria-hidden="true" href="#summary-why-this-is-cool">#</a></h3>
+<ul>
+<li><strong>No Database</strong>: Your site can&rsquo;t be hacked via SQL injection.</li>
+<li><strong>Instant Speed</strong>: Because there is no processing on the server, your pages load in miliseconds.</li>
+<li><strong>Markdown</strong>: You own your content. it&rsquo;s just text files. if you want to leave Hugo in 10 years, you just take your .md files with you.</li>
+<li><em><strong>Thanks :)</strong></em></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/hugo/">Hugo</a></li>
+      <li><a href="http://localhost:1313/tags/webdev/">Webdev</a></li>
+    </ul>
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on x"
+            href="https://x.com/intent/tweet/?text=How%20I%20Built%20This%20Static%20Site&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f&amp;hashtags=hugo%2cwebdev">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f&amp;title=How%20I%20Built%20This%20Static%20Site&amp;summary=How%20I%20Built%20This%20Static%20Site&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f&title=How%20I%20Built%20This%20Static%20Site">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on whatsapp"
+            href="https://api.whatsapp.com/send?text=How%20I%20Built%20This%20Static%20Site%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on telegram"
+            href="https://telegram.me/share/url?text=How%20I%20Built%20This%20Static%20Site&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share How I Built This Static Site on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=How%20I%20Built%20This%20Static%20Site&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fmy-first-post%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">My Creative Dev Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

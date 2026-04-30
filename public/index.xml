@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>My Creative Dev Blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on My Creative Dev Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Apr 2026 19:13:43 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cool Projects</title>
+      <link>http://localhost:1313/porjects/cool-projects/</link>
+      <pubDate>Thu, 30 Apr 2026 19:13:43 +0700</pubDate>
+      <guid>http://localhost:1313/porjects/cool-projects/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>How I Built This Static Site</title>
+      <link>http://localhost:1313/posts/my-first-post/</link>
+      <pubDate>Thu, 30 Apr 2026 19:13:16 +0700</pubDate>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
+      <description>A deep dive into why i chose hugo over WordPress or others for my portofolio</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello-world/</link>
+      <pubDate>Thu, 30 Apr 2026 11:27:52 +0700</pubDate>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
