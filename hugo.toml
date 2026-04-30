@@ -1,4 +1,4 @@
-baseURL = 'https://github.io'
+baseURL = 'https://ficodes24-design.github.io'
 locale = 'en-us'
 title = 'My Creative Dev Blog'
 theme = 'PaperMod'

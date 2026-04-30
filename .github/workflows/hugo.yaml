@@ -1,4 +1,5 @@
 name: Deploy Hugo site to Pages
+run: hugo --minify --baseURL "https://ficodes24-design.github.io/"
 
 on:
   push:
