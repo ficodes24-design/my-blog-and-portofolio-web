@@ -9,7 +9,7 @@ summary: "A deep dive into why i chose hugo over WordPress or others for my port
 
 ![Hugo Logo](image.png)
 
-Before I jump into the technical dive into the creation of this website, I would like to review some cool informations that you might want to know. But if you want no ~~Buls***~~ just scroll down to the almost buttom section of this blog post. :) 
+Before I jump into the technical dive into the creation of this website, I would like to review some cool informations that you might want to know. But if you want no ~~Buls...~~ just scroll down to the almost buttom section of this blog post. :) 
 
 ## Why Hugo?
  Because it's **static** and it's fast, **Really fast...**
@@ -177,7 +177,7 @@ And you also want to learn some basic markdown language such as:
 - **The syntax text**: 
 ```
 "```python
-print("whatever) ```"
+print("whatever") ```"
 ``` 
 for python, 
 ```
