@@ -1,5 +1,4 @@
 name: Deploy Hugo site to Pages
-run: hugo --minify --baseURL "https://ficodes24-design.github.io/"
 
 on:
   push:
@@ -35,6 +34,7 @@ jobs:
           submodules: recursive
           fetch-depth: 0
       - name: Setup Pages
+        id : pages
         uses: actions/configure-pages@v4
         with:
           static_site_generator: hugo
