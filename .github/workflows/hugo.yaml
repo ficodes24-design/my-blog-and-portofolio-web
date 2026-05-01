@@ -5,6 +5,9 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
@@ -35,9 +38,11 @@ jobs:
           fetch-depth: 0
       - name: Setup Pages
         id : pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
         with:
           static_site_generator: hugo
+          generator_config_file: hugo.toml
+      
       - name: Build with Hugo
         run: |
           hugo \
